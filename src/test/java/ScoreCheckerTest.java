@@ -1,0 +1,94 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public final class ScoreCheckerTest {
+
+    @Test
+    void equivalencePartitioning() {
+        var result = ScoreChecker.check(-100, -100, false);
+        assertEquals("Scorul nu este valid", result);
+
+        result = ScoreChecker.check(1000, 500, true);
+        assertEquals("Scorul nu este valid", result);
+
+        result = ScoreChecker.check(250, -250, false);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        result = ScoreChecker.check(250, 250, true);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        result = ScoreChecker.check(7, 2, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(6, 2, false);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(11, 1, true);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(7, 2, false);
+        assertEquals("Nu", result);
+    }
+
+    @Test
+    void boundaryValueAnalysis() {
+        /* targetScore */
+        var result = ScoreChecker.check(0, 10, false);
+        assertEquals("Scorul nu este valid", result);
+
+        result = ScoreChecker.check(1, 10, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(2, 10, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(498, 100, false);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(500, 10, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(501, 10, false);
+        assertEquals("Scorul nu este valid", result);
+
+        /* maxPlays */
+
+        result = ScoreChecker.check(7, 0, false);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        result = ScoreChecker.check(7, 1, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(6, 2, false);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(7, 100, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(7, 101, false);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        /* allow */
+
+        result = ScoreChecker.check(2, 1, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(2, 1, true);
+        assertEquals("Da", result);
+    }
+
+    @Test
+    void causeEffectGraphing() {
+        var result = ScoreChecker.check(-100, -100, false);
+        assertEquals("Scorul nu este valid", result);
+
+        result = ScoreChecker.check(50, -100, false);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        result = ScoreChecker.check(6, 2, false);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(1, 1, false);
+        assertEquals("Nu", result);
+    }
+}
