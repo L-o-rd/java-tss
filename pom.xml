@@ -42,9 +42,11 @@
                 <configuration>
                     <targetClasses>
                         <param>ScoreChecker</param>
+<!--                        <param>mutants.Equivalent</param>-->
                     </targetClasses>
                     <targetTests>
                         <param>ScoreCheckerTest</param>
+<!--                        <param>mutants.EquivalentTest</param>-->
                     </targetTests>
                 </configuration>
             </plugin>
