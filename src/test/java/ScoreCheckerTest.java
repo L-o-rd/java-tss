@@ -127,4 +127,37 @@ public final class ScoreCheckerTest {
         result = ScoreChecker.check(243, 39, false);
         assertEquals("Nu", result);
     }
+
+    @Test
+    void modifiedConditionDecisionCoverage() {
+        /* D1 */
+        var result = ScoreChecker.check(12, 3, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(-10, 10, false);
+        assertEquals("Scorul nu este valid", result);
+
+        result = ScoreChecker.check(1345, 32, true);
+        assertEquals("Scorul nu este valid", result);
+
+        /* D2 */
+        result = ScoreChecker.check(73, 4, true);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(12, -23, false);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        result = ScoreChecker.check(12, 254, true);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        /* D3 */
+        result = ScoreChecker.check(6, 4, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(1, 1, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(7, 4, false);
+        assertEquals("Nu", result);
+    }
 }
