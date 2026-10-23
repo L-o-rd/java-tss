@@ -91,4 +91,40 @@ public final class ScoreCheckerTest {
         result = ScoreChecker.check(1, 1, false);
         assertEquals("Nu", result);
     }
+
+    @Test
+    void linearCircuits() {
+        var result = ScoreChecker.check(0, 10, false);
+        assertEquals("Scorul nu este valid", result);
+
+        result = ScoreChecker.check(77, 0, false);
+        assertEquals("Numărul de jocuri nu este valid", result);
+
+        result = ScoreChecker.check(1, 1, true);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(1, 1, false);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(498, 100, false);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(199, 65, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(201, 66, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(203, 66, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(223, 40, true);
+        assertEquals("Nu", result);
+
+        result = ScoreChecker.check(203, 68, true);
+        assertEquals("Da", result);
+
+        result = ScoreChecker.check(243, 39, false);
+        assertEquals("Nu", result);
+    }
 }
